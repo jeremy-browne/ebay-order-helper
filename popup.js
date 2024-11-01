@@ -1,3 +1,4 @@
+// popup.js
 document.getElementById("openOrders").addEventListener("click", function () {
     chrome.runtime.sendMessage({ action: "openOrders" });
 });

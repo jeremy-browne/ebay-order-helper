@@ -1,3 +1,5 @@
+// content.js
+
 // Flag to check if the event listeners have been added
 let listenersAdded = false;
 
@@ -111,23 +113,22 @@ function isOrderDetailsPage() {
     return urlPattern.test(window.location.href);
 }
 
-// Call createCopyButton if on an order details page
-if (isOrderDetailsPage()) {
+// Add message listener
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    switch (request.action) {
+      case 'openOrders':
+        openOrdersInTabs();
+        break;
+      case 'selectAllAndDownload':
+        selectAllAndDownload();
+        break;
+      case 'getOrderInfo':
+        getOrderInfo();
+        break;
+    }
+  });
+  
+  // If on an order details page, create the copy buttons
+  if (isOrderDetailsPage()) {
     createCopyButton();
-}
-
-// Add message listener if it hasn't been added already
-if (!listenersAdded) {
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        if (request.action === 'openOrders') {
-            openOrdersInTabs();
-        } else if (request.action === 'selectAllAndDownload') {
-            selectAllAndDownload();
-        } else if (request.action === 'getOrderInfo') {
-            getOrderInfo();
-        }
-    });
-
-    // Set the flag to true to avoid adding listeners again
-    listenersAdded = true;
-}
+  }
