@@ -123,7 +123,12 @@ function getOrderInfo() {
         // Check if the shipping policy matches "Australia Post Domestic Regular Letter Untracked"
         if (shippingPolicyText === 'Australia Post Domestic Regular Letter Untracked') {
             // Set the shipping cost (as a negative value)
-            shippingCost = -3.00; // Adjust the value as needed
+            shippingCost = -1.50; // Adjust the value as needed
+        }
+        // Check if the shipping policy matches "Australia Post Domestic Regular Letter Untracked"
+        if (shippingPolicyText === 'Australia Post Domestic Regular Letter With Tracking') {
+            // Set the shipping cost (as a negative value)
+            shippingCost = -6.32; // Adjust the value as needed
         }
     } else {
         console.warn('Shipping policy element not found.');
