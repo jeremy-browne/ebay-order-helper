@@ -5,7 +5,8 @@
     "permissions": [
         "scripting",
         "tabs",
-        "clipboardWrite"
+        "clipboardWrite",
+        "storage"
     ],
     "host_permissions": [
         "*://*.ebay.com/*",

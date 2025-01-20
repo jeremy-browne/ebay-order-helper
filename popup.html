@@ -1,12 +1,44 @@
 <!-- popup.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>eBay Order Tools</title>
-  </head>
-  <body>
-    <!-- <button id="openOrders">Open eBay Orders</button> -->
-    <!-- <button id="downloadCSV">Download CSV</button> -->
-    <script src="popup.js"></script>
-  </body>
+
+<head>
+  <title>eBay Order Tools</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+
+    .policy-row {
+      display: flex;
+      margin-bottom: 5px;
+    }
+
+    .policy-row input {
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>eBay Shipping Policies</h1>
+
+  <!-- Container to hold the shipping policy rows -->
+  <div id="policiesContainer"></div>
+
+  <!-- Button to add new shipping policy rows -->
+  <button id="addPolicyBtn">Add New Shipping Policy</button>
+
+  <!-- Save status message -->
+  <div id="saveStatus" style="color: green; margin-top: 5px;"></div>
+
+  <!-- Buttons to trigger content script actions if desired -->
+  <!-- <hr />
+  <button id="openOrdersBtn">Open All Orders</button>
+  <button id="getOrderInfoBtn">Get Order Info</button> -->
+
+  <script src="popup.js"></script>
+</body>
+
 </html>
