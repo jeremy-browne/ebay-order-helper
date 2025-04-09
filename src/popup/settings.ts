@@ -1,34 +1,93 @@
 import { ShippingPolicy } from '../shared/types';
 
 const PREDEFINED_POLICIES = [
+  // Australia Post Letters - Standard
   "Australia Post Domestic Regular Letter Untracked",
   "Australia Post Domestic Regular Letter With Tracking",
-  "eBay Postage Labels",
-  "Sendle Parcel Delivery",
+  "Australia Post Domestic Priority Letter",
+  "Australia Post Domestic Priority Letter With Tracking",
+
+  // Australia Post Letters - Express
+  "Australia Post Domestic Express Letter",
+
+  // Australia Post Parcels - Standard
   "Australia Post Standard Parcel",
-  "Standard Parcel Delivery",
+  "Australia Post Standard Parcel + Signature",
+  "Australia Post Standard Parcel + Registered",
+
+  // Australia Post Parcels - Express
+  "Australia Post Express Parcel",
+  "Australia Post Parcel Express + Signature",
+
+  // Australia Post Boxes/Satchels - Standard
+  "Australia Post Standard Small Box/Satchel",
   "Australia Post Standard Medium Box/Satchel",
   "Australia Post Standard Large Box/Satchel",
   "Australia Post Standard Extra Large Box/Satchel",
-  "AU Interparcel Standard",
-  "AU Interparcel Express",
-  "Australia Post Standard Parcel + Signature",
   "Australia Post Standard Small Box/Satchel + Signature",
   "Australia Post Standard Medium Box/Satchel + Signature",
   "Australia Post Standard Large Box/Satchel + Signature",
   "Australia Post Standard Extra Large Box/Satchel + Signature",
-  "Australia Post Standard Parcel + Registered",
+
+  // Australia Post Boxes/Satchels - Express
+  "Australia Post Express Small Box/Satchel",
+  "Australia Post Express Medium Box/Satchel",
+  "Australia Post Express Large Box/Satchel",
+  "Australia Post Express Extra Large Box/Satchel",
+  "Australia Post Express Small Box/Satchel + Signature",
+  "Australia Post Express Medium Box/Satchel + Signature",
+  "Australia Post Express Large Box/Satchel + Signature",
+  "Australia Post Express Extra Large Box/Satchel + Signature",
+
+  // Courier Services - Standard
+  "Courier (Tracked)",
+  "Standard Parcel Delivery",
   "Standard Parcel Delivery - Registered",
-  "Freight: Large and bulky items",
-  "Australia Post Domestic Express Letter",
-  "Economy Shipping from Greater China to worldwide",
+
+  // Courier Services - Express
+  "Couriers Please",
+  "Express Parcel Delivery",
+  "DHL",
+  "Aramex (formerly Fastway)",
+  "Star Track Express",
+  "TNT",
+  "Toll Consumer Delivery",
+
+  // Interparcel Services
+  "AU Interparcel Standard",
+  "AU Interparcel Express",
+
+  // Sendle Services
+  "Sendle Parcel Delivery",
+  "Sendle 250g Parcel with tracking",
+  "Sendle Express",
+
+  // eBay Services
+  "eBay Postage Labels",
   "eBay SpeedPAK Economy",
+  "eBay SpeedPAK Standard",
+  "eBay SpeedPAK Expedited",
+  "eBay SpeedPAK Express",
+
+  // International Shipping - Standard
+  "Economy Shipping from Greater China to worldwide",
+  "Standard Shipping from Greater China to worldwide",
+  "UBI Smart Parcel",
+  "Toll Global Economy",
+  "Standard delivery from outside AU",
+
+  // International Shipping - Express
   "Expedited Shipping from Greater China to worldwide",
+  "TNT International Express",
+  "Express delivery from outside AU",
+
+  // International Shipping - Economy
+  "Economy delivery from outside AU",
+
+  // Special Services
   "Express Delivery with Age Verification",
   "Standard Delivery with Age Verification",
-  "Standard Shipping from Greater China to worldwide",
-  "eBay SpeedPAK Standard",
-  "Sendle 250g Parcel with tracking"
+  "Freight: Large and bulky items"
 ];
 
 document.addEventListener('DOMContentLoaded', async () => {
