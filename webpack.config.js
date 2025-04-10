@@ -13,29 +13,23 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     library: {
-      type: 'var',
-      name: '[name]'
+      type: 'module'
     }
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            compilerOptions: {
-              module: 'none',
-              target: 'ES2020'
-            }
-          }
-        },
+        use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
     extensions: ['.ts', '.js'],
+  },
+  experiments: {
+    outputModule: true
   },
   devtool: 'source-map',
   optimization: {

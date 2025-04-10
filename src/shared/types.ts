@@ -1,6 +1,6 @@
 export interface Message {
   action: MessageAction;
-  data?: unknown;
+  data?: any;
 }
 
 export enum MessageAction {
@@ -8,7 +8,8 @@ export enum MessageAction {
   GET_ORDER_INFO = 'getOrderInfo',
   FETCH_SHIPPING_POLICIES = 'FETCH_SHIPPING_POLICIES',
   SAVE_SHIPPING_POLICIES = 'saveShippingPolicies',
-  REFRESH_POLICIES = 'REFRESH_POLICIES'
+  REFRESH_POLICIES = 'REFRESH_POLICIES',
+  UPDATE_BUTTON_VISIBILITY = 'UPDATE_BUTTON_VISIBILITY'
 }
 
 export interface ShippingPolicy {
@@ -45,4 +46,5 @@ export interface Address {
 
 export interface StorageResult {
   shippingPolicies?: ShippingPolicy[];
+  buttonVisibility?: boolean;
 } 

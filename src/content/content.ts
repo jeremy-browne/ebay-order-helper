@@ -35,7 +35,7 @@ function addOverlayStyles(): void {
       cursor: pointer;
       font-size: 14px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease-in-out;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -44,10 +44,18 @@ function addOverlayStyles(): void {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
+    .ebay-helper-button.hidden {
+      display: none;
+    }
+
     .ebay-helper-button:hover {
       background-color: #005ea6;
       transform: translateY(-1px);
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .ebay-helper-button.hidden:hover {
+      transform: translateX(100%) translateY(-1px);
     }
 
     .ebay-helper-button .icon {
@@ -283,15 +291,12 @@ function isOrderDetailsPage(): boolean {
 // Listen for background messages
 chrome.runtime.onMessage.addListener((request: Message, sender, sendResponse) => {
   try {
-    switch (request.action) {
-      case MessageAction.OPEN_ORDERS:
-        openOrdersInTabs();
-        break;
-      case MessageAction.GET_ORDER_INFO:
-        getOrderInfo();
-        break;
-      default:
-        console.warn('Unknown message action:', request.action);
+    console.log('Content script received message:', request);
+    if (request.action === MessageAction.UPDATE_BUTTON_VISIBILITY) {
+      console.log('Received button visibility update:', request.data.visible);
+      updateButtonVisibility(request.data.visible);
+    } else {
+      console.warn('Unknown message action:', request.action);
     }
   } catch (error) {
     console.error('Error handling message:', error);
@@ -376,4 +381,38 @@ if (isOrderDetailsPage()) {
   }).catch(error => {
     console.error('Error fetching policies:', error);
   });
-} 
+}
+
+// Function to update button visibility
+function updateButtonVisibility(visible: boolean): void {
+  console.log('Updating button visibility:', visible);
+  const buttons = document.querySelectorAll<HTMLElement>('.ebay-helper-button');
+  console.log('Found buttons:', buttons.length);
+  buttons.forEach(button => {
+    console.log('Updating button:', button);
+    if (visible) {
+      button.classList.remove('hidden');
+      // Remove any inline transform style
+      button.style.removeProperty('transform');
+    } else {
+      button.classList.add('hidden');
+      // Remove any inline transform style
+      button.style.removeProperty('transform');
+    }
+  });
+}
+
+// Listen for storage changes
+chrome.storage.onChanged.addListener((changes, namespace) => {
+  if (namespace === 'sync' && changes.buttonVisibility) {
+    console.log('Storage changed - button visibility:', changes.buttonVisibility.newValue);
+    updateButtonVisibility(changes.buttonVisibility.newValue);
+  }
+});
+
+// Initialize button visibility
+chrome.storage.sync.get(['buttonVisibility'], function(result) {
+  console.log('Initial button visibility state:', result.buttonVisibility);
+  const isVisible = result.buttonVisibility === undefined ? true : result.buttonVisibility;
+  updateButtonVisibility(isVisible);
+}); 
